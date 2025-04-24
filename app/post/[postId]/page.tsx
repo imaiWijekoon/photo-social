@@ -188,6 +188,7 @@ export default function PostPage({ params }: { params: Promise<{ postId: string 
 
   const handleLikeToggle = async () => {
     if (!isLoggedIn) {
+      // If the user is not logged in, show a toast message
       toast({
         title: "Authentication required",
         description: "Please log in to like posts",
@@ -210,6 +211,7 @@ export default function PostPage({ params }: { params: Promise<{ postId: string 
           variant: "destructive",
         });
       }
+      // Update the list of likes in the post object
       liked ? setPost({ ...post, likes: post.likes.filter((like) => like !== currentUsername) }) : setPost({ ...post, likes: [...post.likes, currentUsername] });
     } catch (error) {
       toast({
@@ -230,10 +232,12 @@ export default function PostPage({ params }: { params: Promise<{ postId: string 
       });
       return;
     }
+    // If comment box is empty or whitespace, do nothing
     if (!commentText.trim()) return;
     setSubmittingComment(true);
     try {
       const response = await axios.post(`http://localhost:8080/api/posts/${postId}/comments?username=${currentUsername}&text=${commentText}` )
+      // Create a new comment locally
       if (response.data) {
         const newComment: Comment = {
           id: Date.now().toString(),
