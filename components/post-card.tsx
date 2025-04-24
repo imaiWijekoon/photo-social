@@ -35,10 +35,12 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="flex items-center gap-3 text-muted-foreground">
           <div className="flex items-center gap-1">
             <Heart className="h-4 w-4" />
+             {/* Like COunt */}
             <span className="text-xs">{post.likes || 0}</span>
           </div>
           <div className="flex items-center gap-1">
             <MessageCircle className="h-4 w-4" />
+            {/* COMMENT COunt */}
             <span className="text-xs">{post.comments?.length || 0}</span>
           </div>
         </div>
@@ -46,3 +48,5 @@ export default function PostCard({ post }: PostCardProps) {
     </Card>
   )
 }
+
+
