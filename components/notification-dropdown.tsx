@@ -20,7 +20,7 @@ export default function NotificationDropdown() {
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
 
-  // Simulated API call to fetch notifications
+  // Simulated API call to fetch notification
   const fetchNotifications = async () => {
     const username = getUsername();
     if (!username) return;
