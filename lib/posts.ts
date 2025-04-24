@@ -1,10 +1,8 @@
-// lib/api.ts
 import axios, { AxiosResponse } from 'axios';
 
 const BASE_URL = 'http://localhost:8080'; 
 const getToken = () => localStorage.getItem('token');
 
-// Fetch a single post by ID
 export const getPostById = async (postId: string): Promise<AxiosResponse<any>> => {
   try {
     const response = await axios.get(`${BASE_URL}/api/posts/${postId}`);
@@ -14,7 +12,6 @@ export const getPostById = async (postId: string): Promise<AxiosResponse<any>> =
   }
 };
 
-// Add a comment to a post
 export const addComment = async (
   postId: string,
   username: string,
@@ -23,6 +20,8 @@ export const addComment = async (
   try {
     const token = getToken();
     if (!token) throw new Error('No token found');
+
+    // We send both query params AND request body here — redundancy in case backend reads either
     const response = await axios.post(
       `${BASE_URL}/api/posts/${postId}/comments?username=${username}&text=${text}`,
       { username, text },
@@ -34,11 +33,12 @@ export const addComment = async (
   }
 };
 
-// Like a post
 export const likePost = async (postId: string): Promise<AxiosResponse<any>> => {
   try {
     const token = getToken();
     if (!token) throw new Error('No token found');
+
+    // Like request has empty body but still needs Authorization header
     const response = await axios.post(
       `${BASE_URL}/api/posts/${postId}/like`,
       {},
@@ -50,11 +50,12 @@ export const likePost = async (postId: string): Promise<AxiosResponse<any>> => {
   }
 };
 
-// Unlike a post
 export const unlikePost = async (postId: string): Promise<AxiosResponse<any>> => {
   try {
     const token = getToken();
     if (!token) throw new Error('No token found');
+
+    // Same as likePost but endpoint is 'unlike'
     const response = await axios.post(
       `${BASE_URL}/api/posts/${postId}/unlike`,
       {},
@@ -66,11 +67,12 @@ export const unlikePost = async (postId: string): Promise<AxiosResponse<any>> =>
   }
 };
 
-// Delete a post
 export const deletePost = async (postId: string): Promise<AxiosResponse<any>> => {
   try {
     const token = getToken();
     if (!token) throw new Error('No token found');
+
+    // DELETE request sends token via headers, no body needed
     const response = await axios.delete(`${BASE_URL}/api/posts/${postId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
