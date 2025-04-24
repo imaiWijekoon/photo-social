@@ -4,6 +4,7 @@ export interface ApiResponse<T> {
   message?: string
 }
 
+//Added Like and Comment to post
 export interface Post {
   id: string
   title: string
@@ -27,6 +28,7 @@ export interface Article {
   updatedAt: string
 }
 
+//Comment Model interface
 export interface Comment {
   id: string
   username: string
