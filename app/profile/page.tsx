@@ -4,15 +4,6 @@ import axios, { AxiosResponse } from 'axios';
 import { getUsername } from '@/lib/auth';
 import Link from 'next/link';
 
-// Define TypeScript types for API responses
-interface UserProfile {
-  id: string;
-  username: string;
-  email: string;
-  profilePicture?: string; // Optional since it might not always be provided
-  bio?: string; // Optional
-}
-
 interface Post {
   id: string;
   title: string;
@@ -23,6 +14,17 @@ interface Post {
   comments: Array<{ username: string; text: string; createdAt: string }>;
   createdAt: string;
 }
+
+// Define TypeScript types for API responses
+interface UserProfile {
+  id: string;
+  username: string;
+  email: string;
+  profilePicture?: string; // Optional since it might not always be provided
+  bio?: string; // Optional
+}
+
+
 
 // ProfilePage Component
 const ProfilePage = () => {
