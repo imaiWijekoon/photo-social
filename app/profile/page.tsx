@@ -58,6 +58,7 @@ const ProfilePage = () => {
   }, [username]);
 
   // Handle form changes
+  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
