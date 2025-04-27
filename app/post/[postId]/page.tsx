@@ -86,6 +86,7 @@ const addComment = async (
   return response;
 };
 //like post
+
 const likePost = async (postId: string): Promise<AxiosResponse<any>> => {
   const token = localStorage.getItem("token");
   if (!token) throw new Error("No token found");
