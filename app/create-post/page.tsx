@@ -65,7 +65,7 @@ export default function CreatePostPage() {
             createdBy: "admin",
             members: 120,
           },
-          
+
           {
             id: "2",
             name: "Portrait Masters",
@@ -148,6 +148,7 @@ export default function CreatePostPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Create a New Post</CardTitle>
+
           <CardDescription>Share your photography and stories with the community</CardDescription>
         </CardHeader>
         <CardContent>
@@ -186,7 +187,16 @@ export default function CreatePostPage() {
               />
             </div>
 
-            {imagePreview && (
+        
+
+            {!imagePreview && (
+              <div className="mt-4 border rounded-lg p-8 flex flex-col items-center justify-center text-muted-foreground">
+                <ImagePlus size={48} className="mb-2" />
+                <p>Enter an image URL to see a preview</p>
+              </div>
+            )}
+
+{imagePreview && (
               <div className="mt-4 relative aspect-video w-full overflow-hidden rounded-lg border">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -198,16 +208,10 @@ export default function CreatePostPage() {
               </div>
             )}
 
-            {!imagePreview && (
-              <div className="mt-4 border rounded-lg p-8 flex flex-col items-center justify-center text-muted-foreground">
-                <ImagePlus size={48} className="mb-2" />
-                <p>Enter an image URL to see a preview</p>
-              </div>
-            )}
-
             <div className="space-y-2">
               <Label htmlFor="group">Post to Group (Optional)</Label>
               <Select value={selectedGroup} onValueChange={setSelectedGroup}>
+
                 <SelectTrigger id="group">
                   <SelectValue placeholder="Select a group (optional)" />
                 </SelectTrigger>
@@ -215,7 +219,7 @@ export default function CreatePostPage() {
                   <SelectItem value="personal">Personal Post</SelectItem>
                   {loadingGroups ? (
                     <SelectItem value="loading" disabled>
-                      Loading groups...
+                      Loading groups....
                     </SelectItem>
                   ) : groups.length === 0 ? (
                     <SelectItem value="none" disabled>
