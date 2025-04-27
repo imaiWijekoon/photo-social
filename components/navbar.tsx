@@ -37,9 +37,6 @@ export default function Navbar() {
     window.location.href = "/"
   }
 
-  // Only show the navbar after client-side hydration
-  if (!mounted) return null
-
   const navItems = [
     { name: "Home", href: "/", icon: <Home className="h-5 w-5 mr-2" /> },
     { name: "Groups", href: "/groups", icon: <Users className="h-5 w-5 mr-2" /> },
@@ -47,6 +44,11 @@ export default function Navbar() {
       ? [{ name: "Create Post", href: "/create-post", icon: <PlusSquare className="h-5 w-5 mr-2" /> }]
       : []),
   ]
+
+  // Only show the navbar after client-side hydration
+  if (!mounted) return null
+
+  
 
   return (
     <header className="sticky mx-auto top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
