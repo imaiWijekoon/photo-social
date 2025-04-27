@@ -12,6 +12,7 @@ interface ArticleEditorProps {
 export default function ArticleEditor({ value, onChange, placeholder }: ArticleEditorProps) {
   const [preview, setPreview] = useState(false)
 
+  
   return (
     <div className="space-y-4">
       <div className="flex justify-end space-x-2">
