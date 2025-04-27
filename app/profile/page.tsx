@@ -67,6 +67,7 @@ const ProfilePage = () => {
   };
 
   // Update user profile
+  
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {

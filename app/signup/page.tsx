@@ -24,6 +24,7 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const { toast } = useToast();
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
