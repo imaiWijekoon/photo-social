@@ -54,8 +54,10 @@ export default function CreatePostPage() {
         }
       } catch (error) {
         console.error("Failed to fetch groups", error)
+
         // Fallback data
         setGroups([
+
           {
             id: "1",
             name: "Landscape Photography",
@@ -63,6 +65,7 @@ export default function CreatePostPage() {
             createdBy: "admin",
             members: 120,
           },
+          
           {
             id: "2",
             name: "Portrait Masters",
