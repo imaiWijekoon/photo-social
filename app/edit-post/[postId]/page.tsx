@@ -5,9 +5,9 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/components/ui/use-toast"
 import { isAuthenticated, getUsername } from "@/lib/auth"
@@ -42,6 +42,7 @@ export default function EditPostPage({ params }: { params: Promise<{ postId: str
         variant: "destructive",
       })
       router.push("/login")
+      
       return
     }
 
