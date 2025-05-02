@@ -8,6 +8,7 @@ interface CommentListProps {
 
 export default function CommentList({ comments }: CommentListProps) {
   // If no comments exist, show a placeholder message
+
   if (comments.length === 0) {
     return <div className="text-center py-8 text-muted-foreground">No comments yet. Be the first to comment!</div>
   }
@@ -29,6 +30,7 @@ export default function CommentList({ comments }: CommentListProps) {
             <div className="flex items-center gap-2">
               <span className="font-medium">{comment.username}</span>
 
+
               {/* Show how long ago the comment was posted (e.g., "5 minutes ago") 
                   If createdAt is missing, just say "just now" */}
               <span className="text-xs text-muted-foreground">
@@ -37,6 +39,7 @@ export default function CommentList({ comments }: CommentListProps) {
                   : "just now"}
               </span>
             </div>
+
 
             {/* Show the actual text of the comment */}
             <p className="text-sm">{comment.text}</p>
