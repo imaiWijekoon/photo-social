@@ -8,7 +8,6 @@ interface PostCardProps {
   post: Post
 }
 
-
 export default function PostCard({ post }: PostCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
