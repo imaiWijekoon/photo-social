@@ -19,20 +19,25 @@ import { getGroups } from "@/lib/groups"
 import type { Group } from "@/lib/types"
 import axios from "axios"
 
+// Page to create a new post
 export default function CreatePostPage() {
+  // Form state management
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [imageUrl, setImageUrl] = useState("")
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [articleContent, setArticleContent] = useState("")
   const [loading, setLoading] = useState(false)
+
+  // Group selection and state
   const [groups, setGroups] = useState<Group[]>([])
   const [selectedGroup, setSelectedGroup] = useState<string>("")
   const [loadingGroups, setLoadingGroups] = useState(true)
+
   const router = useRouter()
   const { toast } = useToast()
 
-  // Check if user is authenticated
+  // Run on mount: check auth and fetch group data
   useEffect(() => {
     if (!isAuthenticated()) {
       toast({
@@ -44,20 +49,18 @@ export default function CreatePostPage() {
       return
     }
 
-    // Fetch groups the user is a member of
+    // Fetch all groups from API or fallback to defaults
     const fetchGroups = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/groups" )
+        const response = await axios.get("http://localhost:8080/api/groups")
         if (response) {
-          // In a real app, you'd filter for groups the user is a member of
           setGroups(response.data)
         }
       } catch (error) {
         console.error("Failed to fetch groups", error)
 
-        // Fallback data
+        // Fallback demo groups
         setGroups([
-
           {
             id: "1",
             name: "Landscape Photography",
@@ -65,7 +68,6 @@ export default function CreatePostPage() {
             createdBy: "admin",
             members: 120,
           },
-
           {
             id: "2",
             name: "Portrait Masters",
@@ -82,6 +84,7 @@ export default function CreatePostPage() {
     fetchGroups()
   }, [router, toast])
 
+  // Form submit handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -89,6 +92,7 @@ export default function CreatePostPage() {
     try {
       const username = getUsername()
 
+      // Safety check in case username isn't found
       if (!username) {
         toast({
           title: "Authentication error",
@@ -99,6 +103,7 @@ export default function CreatePostPage() {
         return
       }
 
+      // Prepare payload for API
       const postData = {
         title,
         description,
@@ -112,8 +117,9 @@ export default function CreatePostPage() {
           : undefined,
       }
 
-      const response: any = await axios.post("http://localhost:8080/api/posts",postData)
+      const response: any = await axios.post("http://localhost:8080/api/posts", postData)
 
+      // Show toast and redirect on success
       if (response) {
         toast({
           title: "Post created",
@@ -138,6 +144,7 @@ export default function CreatePostPage() {
     }
   }
 
+  // Handle image URL changes and preview
   const handleImageUrlChange = (url: string) => {
     setImageUrl(url)
     setImagePreview(url)
@@ -148,11 +155,11 @@ export default function CreatePostPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Create a New Post</CardTitle>
-
           <CardDescription>Share your photography and stories with the community</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Title input */}
             <div className="space-y-2">
               <Label htmlFor="title">Title</Label>
               <Input
@@ -164,6 +171,7 @@ export default function CreatePostPage() {
               />
             </div>
 
+            {/* Short description input */}
             <div className="space-y-2">
               <Label htmlFor="description">Short Description</Label>
               <Textarea
@@ -176,6 +184,7 @@ export default function CreatePostPage() {
               />
             </div>
 
+            {/* Image URL input */}
             <div className="space-y-2">
               <Label htmlFor="imageUrl">Image URL</Label>
               <Input
@@ -187,8 +196,7 @@ export default function CreatePostPage() {
               />
             </div>
 
-        
-
+            {/* Image preview or placeholder */}
             {!imagePreview && (
               <div className="mt-4 border rounded-lg p-8 flex flex-col items-center justify-center text-muted-foreground">
                 <ImagePlus size={48} className="mb-2" />
@@ -196,7 +204,7 @@ export default function CreatePostPage() {
               </div>
             )}
 
-{imagePreview && (
+            {imagePreview && (
               <div className="mt-4 relative aspect-video w-full overflow-hidden rounded-lg border">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -208,10 +216,10 @@ export default function CreatePostPage() {
               </div>
             )}
 
+            {/* Group selection dropdown */}
             <div className="space-y-2">
               <Label htmlFor="group">Post to Group (Optional)</Label>
               <Select value={selectedGroup} onValueChange={setSelectedGroup}>
-
                 <SelectTrigger id="group">
                   <SelectValue placeholder="Select a group (optional)" />
                 </SelectTrigger>
@@ -236,6 +244,7 @@ export default function CreatePostPage() {
               </Select>
             </div>
 
+            {/* Tabs for basic post vs full article */}
             <Tabs defaultValue="basic" className="mt-6">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="basic">Basic Post</TabsTrigger>
@@ -258,6 +267,7 @@ export default function CreatePostPage() {
               </TabsContent>
             </Tabs>
 
+            {/* Form action buttons */}
             <div className="flex gap-4 pt-6">
               <Button
                 type="button"

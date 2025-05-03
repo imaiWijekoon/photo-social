@@ -42,7 +42,6 @@ export default function EditPostPage({ params }: { params: Promise<{ postId: str
         variant: "destructive",
       })
       router.push("/login")
-      
       return
     }
 
