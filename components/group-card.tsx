@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Users } from "lucide-react"
 import type { Group } from "@/lib/types"
 
+// This component is used to display a group card
 interface GroupCardProps {
   group: Group
 }
