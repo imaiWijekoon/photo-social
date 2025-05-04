@@ -7,6 +7,8 @@ interface GroupMessageListProps {
   messages: GroupMessage[]
 }
 
+// This component is used to display a list of group messages
+
 export default function GroupMessageList({ messages }: GroupMessageListProps) {
   if (messages.length === 0) {
     return <div className="text-center py-8 text-muted-foreground">No messages yet. Start the conversation!</div>
