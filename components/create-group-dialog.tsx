@@ -97,7 +97,7 @@ export default function CreateGroupDialog({ open, onOpenChange, onGroupCreated }
         <DialogHeader>
           <DialogTitle>Create a New Group</DialogTitle>
           <DialogDescription>
-            Create a photography group to connect with others who share your interests.
+            Create a photograghy group to connect with others who share your interests.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
