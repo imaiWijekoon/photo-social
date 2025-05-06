@@ -4,8 +4,6 @@ import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
 
 //this component is used to edit the article content
-//it has a preview mode and an edit mode
-//it uses dangerouslySetInnerHTML to render the html content
 interface ArticleEditorProps {
   value: string
   onChange: (value: string) => void
