@@ -9,6 +9,8 @@ interface GroupCardProps {
   group: Group
 }
 
+// This component is used to display a group card
+
 export default function GroupCard({ group }: GroupCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
