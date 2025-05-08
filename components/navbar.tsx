@@ -40,6 +40,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/", icon: <Home className="h-5 w-5 mr-2" /> },
     { name: "Groups", href: "/groups", icon: <Users className="h-5 w-5 mr-2" /> },
+    { name: "Chat Room", href: "/chat-room", icon: <Users className="h-5 w-5 mr-2" /> },
     ...(isLoggedIn
       ? [{ name: "Create Post", href: "/create-post", icon: <PlusSquare className="h-5 w-5 mr-2" /> }]
       : []),
