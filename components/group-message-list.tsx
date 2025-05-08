@@ -2,9 +2,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import type { GroupMessage } from "@/lib/types"
 import { formatDistanceToNow } from "date-fns"
 
+// This component is used to display a list of group messages
 interface GroupMessageListProps {
   messages: GroupMessage[]
 }
+
+// This component is used to display a list of group messages
 
 export default function GroupMessageList({ messages }: GroupMessageListProps) {
   if (messages.length === 0) {

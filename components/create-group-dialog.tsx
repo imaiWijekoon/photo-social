@@ -21,11 +21,14 @@ import { useToast } from "@/components/ui/use-toast"
 import { getUsername } from "@/lib/auth"
 import { Loader2 } from "lucide-react"
 
+
 interface CreateGroupDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   onGroupCreated: (group: Group) => void
 }
+
+// This component is used to create a new group
 
 export default function CreateGroupDialog({ open, onOpenChange, onGroupCreated }: CreateGroupDialogProps) {
   const [name, setName] = useState("")
@@ -86,13 +89,15 @@ export default function CreateGroupDialog({ open, onOpenChange, onGroupCreated }
     }
   }
 
+// This function handles the form submission and creates a new group
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Create a New Group</DialogTitle>
           <DialogDescription>
-            Create a photography group to connect with others who share your interests.
+            Create a photograghy group to connect with others who share your interests.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
