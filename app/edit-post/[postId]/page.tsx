@@ -19,6 +19,7 @@ import type { Article } from "@/lib/types"
 import axios from "axios"
 import { use } from "react";
 
+
 export default function EditPostPage({ params }: { params: Promise<{ postId: string }> }) {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -53,6 +54,7 @@ export default function EditPostPage({ params }: { params: Promise<{ postId: str
           const postData = response.data
 
           // Check if current user is the author
+
           const currentUsername = getUsername()
           if (postData.author !== currentUsername) {
             toast({
